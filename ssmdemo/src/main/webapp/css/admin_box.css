@@ -1,0 +1,93 @@
+body {
+	background: #EEF2FB;
+	padding: 0;
+	margin: 0;
+}
+.clear {
+	clear: both;
+}
+.admin_box {
+	background: #EEF2FB;
+}
+.admin_title {
+	height: 31px;
+	background: url(../images/content-bg.gif) repeat-x;
+	border: 0;
+	padding: 0;
+}
+.title_left {
+	float: left;
+	height: 31px;
+	width: 16px;
+	background: url(../images/titile-top-left.gif) no-repeat;
+}
+.title_right {
+	float: right;
+	height: 31px;
+	width: 16px;
+	background: url(../images/titile-top-right.gif) no-repeat;
+}
+.title_content{
+	float: left;
+	padding: 8px 0 0 18px;
+	font-size: 12px;
+	font-weight: bold;
+	background: url(../images/title_icon.gif) no-repeat 5px 10px;
+}
+.admin_buttom {
+	height: 17px;
+	background: url(../images/buttom_bgs.gif) repeat-x;
+	border: 0;
+	padding: 0;
+}
+.buttom_left {
+	float: left;
+	height: 17px;
+	width: 17px;
+	background: url(../images/buttom_left2.gif) no-repeat;
+}
+.buttom_right {
+	float: right;
+	height: 17px;
+	width: 17px;
+	background: url(../images/buttom_right2.gif) no-repeat;
+}
+.admin_content {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+.admin_content table{
+	border: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+.admin_content td{
+	border: 0;
+	padding: 0;
+}
+.content_left {
+	width: 16px;
+	background: url(../images/mail_leftbg.gif) repeat-y;
+}
+.content_right {
+	width: 16px;
+	background: url(../images/mail_rightbg.gif) repeat-y;
+}
+.main_content{
+	background:#F7F8F9;
+	padding: 10px 3px;
+	min-height: 400px;
+	font-size: 12px;
+}
+.worming_text{
+	margin:2px 0; 
+	border: 1px solid #B5D0D9;
+	padding: 5px;
+	background: #FFDB92
+}
+.worming_text p{
+	margin: 0;
+	line-height: 1.5em;
+}

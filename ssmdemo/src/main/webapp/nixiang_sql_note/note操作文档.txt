@@ -1,0 +1,9 @@
+http://localhost:8080/ssmdemo/toAdminLoginPage.action
+
+
+管理员：lc  lc
+
+学生： slc slc
+
+
+教师：tlc tlc

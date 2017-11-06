@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.question.mapper.NoticeMapper" >
+  <resultMap id="BaseResultMap" type="com.question.pojo.Notice" >
+    <id column="ntcid" property="ntcid" jdbcType="BIGINT" />
+    <result column="tchid" property="tchid" jdbcType="BIGINT" />
+    <result column="ntctopic" property="ntctopic" jdbcType="VARCHAR" />
+    <result column="ntccontent" property="ntccontent" jdbcType="VARCHAR" />
+    <result column="ntctime" property="ntctime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ntcid, tchid, ntctopic, ntccontent, ntctime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.question.pojo.NoticeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from notice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from notice
+    where ntcid = #{ntcid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from notice
+    where ntcid = #{ntcid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.question.pojo.NoticeExample" >
+    delete from notice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.question.pojo.Notice" >
+    insert into notice (ntcid, tchid, ntctopic, 
+      ntccontent, ntctime)
+    values (#{ntcid,jdbcType=BIGINT}, #{tchid,jdbcType=BIGINT}, #{ntctopic,jdbcType=VARCHAR}, 
+      #{ntccontent,jdbcType=VARCHAR}, #{ntctime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.question.pojo.Notice" >
+    insert into notice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ntcid != null" >
+        ntcid,
+      </if>
+      <if test="tchid != null" >
+        tchid,
+      </if>
+      <if test="ntctopic != null" >
+        ntctopic,
+      </if>
+      <if test="ntccontent != null" >
+        ntccontent,
+      </if>
+      <if test="ntctime != null" >
+        ntctime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ntcid != null" >
+        #{ntcid,jdbcType=BIGINT},
+      </if>
+      <if test="tchid != null" >
+        #{tchid,jdbcType=BIGINT},
+      </if>
+      <if test="ntctopic != null" >
+        #{ntctopic,jdbcType=VARCHAR},
+      </if>
+      <if test="ntccontent != null" >
+        #{ntccontent,jdbcType=VARCHAR},
+      </if>
+      <if test="ntctime != null" >
+        #{ntctime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.question.pojo.NoticeExample" resultType="java.lang.Integer" >
+    select count(*) from notice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update notice
+    <set >
+      <if test="record.ntcid != null" >
+        ntcid = #{record.ntcid,jdbcType=BIGINT},
+      </if>
+      <if test="record.tchid != null" >
+        tchid = #{record.tchid,jdbcType=BIGINT},
+      </if>
+      <if test="record.ntctopic != null" >
+        ntctopic = #{record.ntctopic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ntccontent != null" >
+        ntccontent = #{record.ntccontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ntctime != null" >
+        ntctime = #{record.ntctime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update notice
+    set ntcid = #{record.ntcid,jdbcType=BIGINT},
+      tchid = #{record.tchid,jdbcType=BIGINT},
+      ntctopic = #{record.ntctopic,jdbcType=VARCHAR},
+      ntccontent = #{record.ntccontent,jdbcType=VARCHAR},
+      ntctime = #{record.ntctime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.question.pojo.Notice" >
+    update notice
+    <set >
+      <if test="tchid != null" >
+        tchid = #{tchid,jdbcType=BIGINT},
+      </if>
+      <if test="ntctopic != null" >
+        ntctopic = #{ntctopic,jdbcType=VARCHAR},
+      </if>
+      <if test="ntccontent != null" >
+        ntccontent = #{ntccontent,jdbcType=VARCHAR},
+      </if>
+      <if test="ntctime != null" >
+        ntctime = #{ntctime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ntcid = #{ntcid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.question.pojo.Notice" >
+    update notice
+    set tchid = #{tchid,jdbcType=BIGINT},
+      ntctopic = #{ntctopic,jdbcType=VARCHAR},
+      ntccontent = #{ntccontent,jdbcType=VARCHAR},
+      ntctime = #{ntctime,jdbcType=TIMESTAMP}
+    where ntcid = #{ntcid,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,103 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+
+    
+<!-- nav begin -->
+<nav class="navbar navbar-masthead navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+          
+            <a class="navbar-brand" href="${pageContext.request.contextPath }/toFontIndex.action">ssm-demo</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse dropdown">
+            <ul class="nav navbar-nav">
+                <li><a href="${pageContext.request.contextPath }/toFontIndex.action">课程资源</a></li>
+                <!-- <li><a href="https://qduoj.com/submissions/">提交</a></li>
+                <li><a href="https://qduoj.com/contests/">比赛</a></li>
+                <li><a href="https://qduoj.com/groups/">小组</a></li>
+                <li><a href="https://qduoj.com/rank/">排名</a></li> -->
+                <li><a href="http://www.baidu.com">帮助</a></li>
+            </ul>
+            
+
+             <c:choose>
+			 <c:when test="${sessionScope.teacher==null}">
+			    
+			      <c:if test="${sessionScope.student==null}">
+                      <ul class="nav navbar-nav navbar-right">
+                       <li>
+                        <a href="${pageContext.request.contextPath }/toFontIndex.action">
+                                     #
+                        </a>
+                    </li>
+                    
+                    
+                    	<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				
+					   登录
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<!-- <li><a href="#">#</a></li> -->
+					<!-- <li><a href="#">EJB</a></li>
+					<li><a href="#">Jasper Report</a></li> -->
+					<li class="divider"></li>
+					<li><a href="${pageContext.request.contextPath}/toFontLogin.action">学生用户登录</a></li>
+					<li class="divider"></li>
+					<li><a href="${pageContext.request.contextPath }/toFontLoginTea.action">教师用户登录</a></li>
+				</ul>
+			         </li>
+      
+             </ul>
+                      
+                      </c:if>
+                      
+                      <c:if test="${sessionScope.student!=null }">
+      
+			<ul class="nav navbar-nav navbar-right">
+			
+								<li class="dropdown">
+								  <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.student.stuname } <b class="caret"></b></a>
+								  <ul class="dropdown-menu">
+									
+									 <li><a href="${pageContext.request.contextPath}/toFontReplyPageSee.action">查看评论</a></li>
+									<li><a href="${pageContext.request.contextPath}/slogout.action">退出</a></li>
+								  </ul>
+								</li>
+			 </ul>
+		                </c:if>
+			    
+				
+			 </c:when>
+
+              <c:otherwise>
+			 
+			 <ul class="nav navbar-nav navbar-right">
+								<li class="dropdown">
+								  <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.teacher.tchname } <b class="caret"></b></a>
+								  <ul class="dropdown-menu">
+									<li><a href="${pageContext.request.contextPath}/toFontNoticeAddTea.action">添加公告</a></li>
+									<li><a href="${pageContext.request.contextPath}/toFontCourseAddTea.action">添加课程资源</a></li>
+									<li><a href="${pageContext.request.contextPath}/tlogout.action">退出</a></li>
+								  </ul>
+								</li>
+			 </ul>
+			 
+			 </c:otherwise>
+			
+			 
+			 </c:choose>
+                    
+                   
+      
+        </div>
+    </div>
+</nav>
+<!-- nav end -->

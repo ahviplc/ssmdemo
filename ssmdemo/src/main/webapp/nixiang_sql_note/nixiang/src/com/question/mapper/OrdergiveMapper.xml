@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.question.mapper.OrdergiveMapper" >
+  <resultMap id="BaseResultMap" type="com.question.pojo.Ordergive" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="userid" property="userid" jdbcType="BIGINT" />
+    <result column="utel" property="utel" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="goodsname" property="goodsname" jdbcType="VARCHAR" />
+    <result column="goodcounts" property="goodcounts" jdbcType="INTEGER" />
+    <result column="goodsprice" property="goodsprice" jdbcType="DECIMAL" />
+    <result column="startaddress" property="startaddress" jdbcType="VARCHAR" />
+    <result column="endaddress" property="endaddress" jdbcType="VARCHAR" />
+    <result column="describes" property="describes" jdbcType="VARCHAR" />
+    <result column="salary" property="salary" jdbcType="DECIMAL" />
+    <result column="addresseephone" property="addresseephone" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="drid" property="drid" jdbcType="BIGINT" />
+    <result column="drname" property="drname" jdbcType="VARCHAR" />
+    <result column="carid" property="carid" jdbcType="BIGINT" />
+    <result column="carname" property="carname" jdbcType="VARCHAR" />
+    <result column="givenumbers" property="givenumbers" jdbcType="VARCHAR" />
+    <result column="givetime" property="givetime" jdbcType="TIMESTAMP" />
+    <result column="givepace" property="givepace" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+    <result column="begintime" property="begintime" jdbcType="TIMESTAMP" />
+    <result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="givetime2" property="givetime2" jdbcType="TIMESTAMP" />
+    <result column="giveplace2" property="giveplace2" jdbcType="VARCHAR" />
+    <result column="givetime3" property="givetime3" jdbcType="TIMESTAMP" />
+    <result column="giveplace3" property="giveplace3" jdbcType="VARCHAR" />
+    <result column="givetime4" property="givetime4" jdbcType="TIMESTAMP" />
+    <result column="giveplace4" property="giveplace4" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, userid, utel, username, goodsname, goodcounts, goodsprice, startaddress, endaddress, 
+    describes, salary, addresseephone, time, drid, drname, carid, carname, givenumbers, 
+    givetime, givepace, flag, begintime, endtime, givetime2, giveplace2, givetime3, giveplace3, 
+    givetime4, giveplace4
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.question.pojo.OrdergiveExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ordergive
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ordergive
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ordergive
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.question.pojo.OrdergiveExample" >
+    delete from ordergive
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.question.pojo.Ordergive" >
+    insert into ordergive (id, userid, utel, 
+      username, goodsname, goodcounts, 
+      goodsprice, startaddress, endaddress, 
+      describes, salary, addresseephone, 
+      time, drid, drname, 
+      carid, carname, givenumbers, 
+      givetime, givepace, flag, 
+      begintime, endtime, givetime2, 
+      giveplace2, givetime3, giveplace3, 
+      givetime4, giveplace4)
+    values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{utel,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{goodsname,jdbcType=VARCHAR}, #{goodcounts,jdbcType=INTEGER}, 
+      #{goodsprice,jdbcType=DECIMAL}, #{startaddress,jdbcType=VARCHAR}, #{endaddress,jdbcType=VARCHAR}, 
+      #{describes,jdbcType=VARCHAR}, #{salary,jdbcType=DECIMAL}, #{addresseephone,jdbcType=VARCHAR}, 
+      #{time,jdbcType=TIMESTAMP}, #{drid,jdbcType=BIGINT}, #{drname,jdbcType=VARCHAR}, 
+      #{carid,jdbcType=BIGINT}, #{carname,jdbcType=VARCHAR}, #{givenumbers,jdbcType=VARCHAR}, 
+      #{givetime,jdbcType=TIMESTAMP}, #{givepace,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}, 
+      #{begintime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{givetime2,jdbcType=TIMESTAMP}, 
+      #{giveplace2,jdbcType=VARCHAR}, #{givetime3,jdbcType=TIMESTAMP}, #{giveplace3,jdbcType=VARCHAR}, 
+      #{givetime4,jdbcType=TIMESTAMP}, #{giveplace4,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.question.pojo.Ordergive" >
+    insert into ordergive
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="utel != null" >
+        utel,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="goodsname != null" >
+        goodsname,
+      </if>
+      <if test="goodcounts != null" >
+        goodcounts,
+      </if>
+      <if test="goodsprice != null" >
+        goodsprice,
+      </if>
+      <if test="startaddress != null" >
+        startaddress,
+      </if>
+      <if test="endaddress != null" >
+        endaddress,
+      </if>
+      <if test="describes != null" >
+        describes,
+      </if>
+      <if test="salary != null" >
+        salary,
+      </if>
+      <if test="addresseephone != null" >
+        addresseephone,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="drid != null" >
+        drid,
+      </if>
+      <if test="drname != null" >
+        drname,
+      </if>
+      <if test="carid != null" >
+        carid,
+      </if>
+      <if test="carname != null" >
+        carname,
+      </if>
+      <if test="givenumbers != null" >
+        givenumbers,
+      </if>
+      <if test="givetime != null" >
+        givetime,
+      </if>
+      <if test="givepace != null" >
+        givepace,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="begintime != null" >
+        begintime,
+      </if>
+      <if test="endtime != null" >
+        endtime,
+      </if>
+      <if test="givetime2 != null" >
+        givetime2,
+      </if>
+      <if test="giveplace2 != null" >
+        giveplace2,
+      </if>
+      <if test="givetime3 != null" >
+        givetime3,
+      </if>
+      <if test="giveplace3 != null" >
+        giveplace3,
+      </if>
+      <if test="givetime4 != null" >
+        givetime4,
+      </if>
+      <if test="giveplace4 != null" >
+        giveplace4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="utel != null" >
+        #{utel,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsname != null" >
+        #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodcounts != null" >
+        #{goodcounts,jdbcType=INTEGER},
+      </if>
+      <if test="goodsprice != null" >
+        #{goodsprice,jdbcType=DECIMAL},
+      </if>
+      <if test="startaddress != null" >
+        #{startaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="endaddress != null" >
+        #{endaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="describes != null" >
+        #{describes,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=DECIMAL},
+      </if>
+      <if test="addresseephone != null" >
+        #{addresseephone,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="drid != null" >
+        #{drid,jdbcType=BIGINT},
+      </if>
+      <if test="drname != null" >
+        #{drname,jdbcType=VARCHAR},
+      </if>
+      <if test="carid != null" >
+        #{carid,jdbcType=BIGINT},
+      </if>
+      <if test="carname != null" >
+        #{carname,jdbcType=VARCHAR},
+      </if>
+      <if test="givenumbers != null" >
+        #{givenumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="givetime != null" >
+        #{givetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="givepace != null" >
+        #{givepace,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="begintime != null" >
+        #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="givetime2 != null" >
+        #{givetime2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="giveplace2 != null" >
+        #{giveplace2,jdbcType=VARCHAR},
+      </if>
+      <if test="givetime3 != null" >
+        #{givetime3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="giveplace3 != null" >
+        #{giveplace3,jdbcType=VARCHAR},
+      </if>
+      <if test="givetime4 != null" >
+        #{givetime4,jdbcType=TIMESTAMP},
+      </if>
+      <if test="giveplace4 != null" >
+        #{giveplace4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.question.pojo.OrdergiveExample" resultType="java.lang.Integer" >
+    select count(*) from ordergive
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ordergive
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.userid != null" >
+        userid = #{record.userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.utel != null" >
+        utel = #{record.utel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsname != null" >
+        goodsname = #{record.goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodcounts != null" >
+        goodcounts = #{record.goodcounts,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsprice != null" >
+        goodsprice = #{record.goodsprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.startaddress != null" >
+        startaddress = #{record.startaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endaddress != null" >
+        endaddress = #{record.endaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.describes != null" >
+        describes = #{record.describes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salary != null" >
+        salary = #{record.salary,jdbcType=DECIMAL},
+      </if>
+      <if test="record.addresseephone != null" >
+        addresseephone = #{record.addresseephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.drid != null" >
+        drid = #{record.drid,jdbcType=BIGINT},
+      </if>
+      <if test="record.drname != null" >
+        drname = #{record.drname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carid != null" >
+        carid = #{record.carid,jdbcType=BIGINT},
+      </if>
+      <if test="record.carname != null" >
+        carname = #{record.carname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.givenumbers != null" >
+        givenumbers = #{record.givenumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="record.givetime != null" >
+        givetime = #{record.givetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.givepace != null" >
+        givepace = #{record.givepace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flag != null" >
+        flag = #{record.flag,jdbcType=INTEGER},
+      </if>
+      <if test="record.begintime != null" >
+        begintime = #{record.begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endtime != null" >
+        endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.givetime2 != null" >
+        givetime2 = #{record.givetime2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.giveplace2 != null" >
+        giveplace2 = #{record.giveplace2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.givetime3 != null" >
+        givetime3 = #{record.givetime3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.giveplace3 != null" >
+        giveplace3 = #{record.giveplace3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.givetime4 != null" >
+        givetime4 = #{record.givetime4,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.giveplace4 != null" >
+        giveplace4 = #{record.giveplace4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ordergive
+    set id = #{record.id,jdbcType=BIGINT},
+      userid = #{record.userid,jdbcType=BIGINT},
+      utel = #{record.utel,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR},
+      goodsname = #{record.goodsname,jdbcType=VARCHAR},
+      goodcounts = #{record.goodcounts,jdbcType=INTEGER},
+      goodsprice = #{record.goodsprice,jdbcType=DECIMAL},
+      startaddress = #{record.startaddress,jdbcType=VARCHAR},
+      endaddress = #{record.endaddress,jdbcType=VARCHAR},
+      describes = #{record.describes,jdbcType=VARCHAR},
+      salary = #{record.salary,jdbcType=DECIMAL},
+      addresseephone = #{record.addresseephone,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=TIMESTAMP},
+      drid = #{record.drid,jdbcType=BIGINT},
+      drname = #{record.drname,jdbcType=VARCHAR},
+      carid = #{record.carid,jdbcType=BIGINT},
+      carname = #{record.carname,jdbcType=VARCHAR},
+      givenumbers = #{record.givenumbers,jdbcType=VARCHAR},
+      givetime = #{record.givetime,jdbcType=TIMESTAMP},
+      givepace = #{record.givepace,jdbcType=VARCHAR},
+      flag = #{record.flag,jdbcType=INTEGER},
+      begintime = #{record.begintime,jdbcType=TIMESTAMP},
+      endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      givetime2 = #{record.givetime2,jdbcType=TIMESTAMP},
+      giveplace2 = #{record.giveplace2,jdbcType=VARCHAR},
+      givetime3 = #{record.givetime3,jdbcType=TIMESTAMP},
+      giveplace3 = #{record.giveplace3,jdbcType=VARCHAR},
+      givetime4 = #{record.givetime4,jdbcType=TIMESTAMP},
+      giveplace4 = #{record.giveplace4,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.question.pojo.Ordergive" >
+    update ordergive
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="utel != null" >
+        utel = #{utel,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsname != null" >
+        goodsname = #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodcounts != null" >
+        goodcounts = #{goodcounts,jdbcType=INTEGER},
+      </if>
+      <if test="goodsprice != null" >
+        goodsprice = #{goodsprice,jdbcType=DECIMAL},
+      </if>
+      <if test="startaddress != null" >
+        startaddress = #{startaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="endaddress != null" >
+        endaddress = #{endaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="describes != null" >
+        describes = #{describes,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        salary = #{salary,jdbcType=DECIMAL},
+      </if>
+      <if test="addresseephone != null" >
+        addresseephone = #{addresseephone,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="drid != null" >
+        drid = #{drid,jdbcType=BIGINT},
+      </if>
+      <if test="drname != null" >
+        drname = #{drname,jdbcType=VARCHAR},
+      </if>
+      <if test="carid != null" >
+        carid = #{carid,jdbcType=BIGINT},
+      </if>
+      <if test="carname != null" >
+        carname = #{carname,jdbcType=VARCHAR},
+      </if>
+      <if test="givenumbers != null" >
+        givenumbers = #{givenumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="givetime != null" >
+        givetime = #{givetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="givepace != null" >
+        givepace = #{givepace,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="begintime != null" >
+        begintime = #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="givetime2 != null" >
+        givetime2 = #{givetime2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="giveplace2 != null" >
+        giveplace2 = #{giveplace2,jdbcType=VARCHAR},
+      </if>
+      <if test="givetime3 != null" >
+        givetime3 = #{givetime3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="giveplace3 != null" >
+        giveplace3 = #{giveplace3,jdbcType=VARCHAR},
+      </if>
+      <if test="givetime4 != null" >
+        givetime4 = #{givetime4,jdbcType=TIMESTAMP},
+      </if>
+      <if test="giveplace4 != null" >
+        giveplace4 = #{giveplace4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.question.pojo.Ordergive" >
+    update ordergive
+    set userid = #{userid,jdbcType=BIGINT},
+      utel = #{utel,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      goodsname = #{goodsname,jdbcType=VARCHAR},
+      goodcounts = #{goodcounts,jdbcType=INTEGER},
+      goodsprice = #{goodsprice,jdbcType=DECIMAL},
+      startaddress = #{startaddress,jdbcType=VARCHAR},
+      endaddress = #{endaddress,jdbcType=VARCHAR},
+      describes = #{describes,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=DECIMAL},
+      addresseephone = #{addresseephone,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      drid = #{drid,jdbcType=BIGINT},
+      drname = #{drname,jdbcType=VARCHAR},
+      carid = #{carid,jdbcType=BIGINT},
+      carname = #{carname,jdbcType=VARCHAR},
+      givenumbers = #{givenumbers,jdbcType=VARCHAR},
+      givetime = #{givetime,jdbcType=TIMESTAMP},
+      givepace = #{givepace,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      begintime = #{begintime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      givetime2 = #{givetime2,jdbcType=TIMESTAMP},
+      giveplace2 = #{giveplace2,jdbcType=VARCHAR},
+      givetime3 = #{givetime3,jdbcType=TIMESTAMP},
+      giveplace3 = #{giveplace3,jdbcType=VARCHAR},
+      givetime4 = #{givetime4,jdbcType=TIMESTAMP},
+      giveplace4 = #{giveplace4,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

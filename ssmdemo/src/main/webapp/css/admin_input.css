@@ -1,0 +1,97 @@
+.admin_input {
+	padding: 5px 0;
+}
+.admin_input table{
+	width: 100%;
+	border:0;
+	border-collapse: collapse;
+	font-size: 12px;
+	background: #f2f2f2;
+}
+.admin_input th{
+	border: 0;
+	border-top: 1px solid #BFC4CA;
+	border-bottom: 1px solid #BFC4CA;
+	background: #E1E5EE;;
+	color: #0e426b;
+	padding: 10px;
+	text-align: left;
+}
+.admin_input td{
+	border: 0;
+	padding: 8px 5px;
+}
+.admin_input .even {
+	background: #F7F8F9;
+}
+.admin_input .label {
+	text-align: right;
+	font-weight: bold;
+	color: #333;
+}
+.admin_input .input_box {
+	width: 60%;
+	border: 1px solid #BFC4CA;
+	padding: 3px 5px;
+}
+
+.admin_input textarea {
+	width: 80%;
+	border: 1px solid #BFC4CA;
+	padding: 3px 5px;
+}
+.admin_input select {
+	border: 1px solid #BFC4CA;
+	padding: 3px 5px;
+}
+
+
+.admin_show {
+	padding: 5px 0;
+}
+.admin_show table{
+	width: 100%;
+	border:1px solid #B5D0D9;
+	border-collapse: collapse;
+	font-size: 14px;
+	background: #fff;
+}
+.admin_show th{
+	border:1px solid #B5D0D9;
+	background: #E1E5EE;;
+	color: #0e426b;
+	padding: 10px;
+	text-align: left;
+}
+.admin_show td{
+	border:1px solid #B5D0D9;
+	padding: 8px 5px;
+	white-space:normal;
+	word-wrap:break-word;
+}
+.admin_show .even {
+	background: #F7F8F9;
+}
+.admin_show .label {
+	text-align: right;
+	font-weight: bold;
+	color: #333;
+	font-size: 12px;
+}
+.admin_show .input_box {
+	width: 60%;
+	border: 1px solid #BFC4CA;
+	padding: 3px 5px;
+}
+
+.admin_show textarea {
+	width: 80%;
+	border: 1px solid #BFC4CA;
+	padding: 3px 5px;
+}
+.admin_show select {
+	border: 1px solid #BFC4CA;
+	padding: 3px 5px;
+}
+
+

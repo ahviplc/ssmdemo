@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.question.mapper.CourseMapper" >
+  <resultMap id="BaseResultMap" type="com.question.pojo.Course" >
+    <id column="crseid" property="crseid" jdbcType="BIGINT" />
+    <result column="tchid" property="tchid" jdbcType="BIGINT" />
+    <result column="crsurl" property="crsurl" jdbcType="VARCHAR" />
+    <result column="crstopic" property="crstopic" jdbcType="VARCHAR" />
+    <result column="crsdescribe" property="crsdescribe" jdbcType="VARCHAR" />
+    <result column="crstime" property="crstime" jdbcType="TIMESTAMP" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    crseid, tchid, crsurl, crstopic, crsdescribe, crstime, type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.question.pojo.CourseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where crseid = #{crseid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from course
+    where crseid = #{crseid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.question.pojo.CourseExample" >
+    delete from course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.question.pojo.Course" >
+    insert into course (crseid, tchid, crsurl, 
+      crstopic, crsdescribe, crstime, 
+      type)
+    values (#{crseid,jdbcType=BIGINT}, #{tchid,jdbcType=BIGINT}, #{crsurl,jdbcType=VARCHAR}, 
+      #{crstopic,jdbcType=VARCHAR}, #{crsdescribe,jdbcType=VARCHAR}, #{crstime,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.question.pojo.Course" >
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="crseid != null" >
+        crseid,
+      </if>
+      <if test="tchid != null" >
+        tchid,
+      </if>
+      <if test="crsurl != null" >
+        crsurl,
+      </if>
+      <if test="crstopic != null" >
+        crstopic,
+      </if>
+      <if test="crsdescribe != null" >
+        crsdescribe,
+      </if>
+      <if test="crstime != null" >
+        crstime,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="crseid != null" >
+        #{crseid,jdbcType=BIGINT},
+      </if>
+      <if test="tchid != null" >
+        #{tchid,jdbcType=BIGINT},
+      </if>
+      <if test="crsurl != null" >
+        #{crsurl,jdbcType=VARCHAR},
+      </if>
+      <if test="crstopic != null" >
+        #{crstopic,jdbcType=VARCHAR},
+      </if>
+      <if test="crsdescribe != null" >
+        #{crsdescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="crstime != null" >
+        #{crstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.question.pojo.CourseExample" resultType="java.lang.Integer" >
+    select count(*) from course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update course
+    <set >
+      <if test="record.crseid != null" >
+        crseid = #{record.crseid,jdbcType=BIGINT},
+      </if>
+      <if test="record.tchid != null" >
+        tchid = #{record.tchid,jdbcType=BIGINT},
+      </if>
+      <if test="record.crsurl != null" >
+        crsurl = #{record.crsurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.crstopic != null" >
+        crstopic = #{record.crstopic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.crsdescribe != null" >
+        crsdescribe = #{record.crsdescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.crstime != null" >
+        crstime = #{record.crstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update course
+    set crseid = #{record.crseid,jdbcType=BIGINT},
+      tchid = #{record.tchid,jdbcType=BIGINT},
+      crsurl = #{record.crsurl,jdbcType=VARCHAR},
+      crstopic = #{record.crstopic,jdbcType=VARCHAR},
+      crsdescribe = #{record.crsdescribe,jdbcType=VARCHAR},
+      crstime = #{record.crstime,jdbcType=TIMESTAMP},
+      type = #{record.type,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.question.pojo.Course" >
+    update course
+    <set >
+      <if test="tchid != null" >
+        tchid = #{tchid,jdbcType=BIGINT},
+      </if>
+      <if test="crsurl != null" >
+        crsurl = #{crsurl,jdbcType=VARCHAR},
+      </if>
+      <if test="crstopic != null" >
+        crstopic = #{crstopic,jdbcType=VARCHAR},
+      </if>
+      <if test="crsdescribe != null" >
+        crsdescribe = #{crsdescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="crstime != null" >
+        crstime = #{crstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where crseid = #{crseid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.question.pojo.Course" >
+    update course
+    set tchid = #{tchid,jdbcType=BIGINT},
+      crsurl = #{crsurl,jdbcType=VARCHAR},
+      crstopic = #{crstopic,jdbcType=VARCHAR},
+      crsdescribe = #{crsdescribe,jdbcType=VARCHAR},
+      crstime = #{crstime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=VARCHAR}
+    where crseid = #{crseid,jdbcType=BIGINT}
+  </update>
+</mapper>

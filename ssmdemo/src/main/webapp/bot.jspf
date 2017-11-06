@@ -1,0 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<div class="footer">
+    <p class="text-muted text-center">Copyright © 2017 <a href="${pageContext.request.contextPath }/toFontIndex.action">ssm-demo-你的学习天堂</a></p>
+</div>
